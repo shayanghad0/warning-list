@@ -13,7 +13,8 @@
   
 ۴- برای بررسی ‍‍‍پروژه جدید از فلوچارت پیشنهادی استفاده کنید:
 
-  https://webamoozcom.github.io/warning-list/Warning%20List%20Flowchart.jpg
+![FlowChart](<Warning List Flowchart.jpg>)
+
 
 ۵- در صورت وجود پروژه جدید، یک سطر به انتهای لیست اضافه کنید و در صورت اصلاح پروژه قدیمی، موارد اصلاحی را ویرایش کنید.
 
