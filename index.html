@@ -1,1383 +1,877 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v29.0.2/dist/font-face.css" rel="stylesheet"
-        type="text/css" />
     <title>لیست هشدار وب آموز</title>
-
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v29.0.2/dist/font-face.css" rel="stylesheet" type="text/css" />
     <style>
-        /* Dark Theme (Default) */
+        /* ===== CSS VARIABLES ===== */
         :root, [data-theme="dark"] {
-            --primary: #3b82f6;
-            --primary-dark: #2563eb;
-            --danger: #ef4444;
-            --success: #22c55e;
-            --bg-body: #0f172a;
-            --bg-card: #1e293b;
-            --bg-card-hover: #334155;
-            --bg-table: #1e293b;
-            --bg-table-row: #1e293b;
-            --bg-table-stripe: #0f172a;
-            --bg-table-hover: #1e3a5f;
-            --bg-input: #1e293b;
-            --bg-alert-danger: #450a0a;
-            --bg-alert-primary: #172554;
-            --bg-alert-success: #052e16;
-            --bg-alert-dark: #1e293b;
-            --text-primary: #f1f5f9;
+            --bg: #050510;
+            --bg-card: rgba(15, 23, 42, 0.8);
+            --bg-card-solid: #0f172a;
+            --bg-hover: rgba(30, 58, 95, 0.6);
+            --bg-input: rgba(15, 23, 42, 0.9);
+            --bg-table-stripe: rgba(15, 23, 42, 0.5);
+            --bg-table-hover: rgba(59, 130, 246, 0.1);
+            --text: #f1f5f9;
             --text-secondary: #94a3b8;
             --text-muted: #64748b;
-            --text-link: #60a5fa;
-            --text-link-hover: #93c5fd;
-            --border-color: #334155;
-            --border-light: #1e293b;
-            --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
-            --shadow: 0 4px 6px -1px rgba(0,0,0,0.4), 0 2px 4px -2px rgba(0,0,0,0.3);
-            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.5), 0 8px 10px -6px rgba(0,0,0,0.4);
-            --radius: 12px;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --danger: #ef4444;
+            --danger-bg: rgba(239, 68, 68, 0.15);
+            --success: #22c55e;
+            --success-bg: rgba(34, 197, 94, 0.15);
+            --info-bg: rgba(59, 130, 246, 0.15);
+            --border: rgba(148, 163, 184, 0.15);
+            --border-strong: rgba(148, 163, 184, 0.3);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --shadow: 0 8px 32px rgba(0,0,0,0.4);
+            --shadow-lg: 0 16px 64px rgba(0,0,0,0.6);
+            --loader-dot: #3b82f6;
         }
 
-        /* Light Theme */
         [data-theme="light"] {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --danger: #dc2626;
-            --success: #16a34a;
-            --bg-body: #f0f4ff;
-            --bg-card: #ffffff;
-            --bg-card-hover: #f8fafc;
-            --bg-table: #ffffff;
-            --bg-table-row: #ffffff;
-            --bg-table-stripe: #f8fafc;
-            --bg-table-hover: #eff6ff;
-            --bg-input: #ffffff;
-            --bg-alert-danger: #fef2f2;
-            --bg-alert-primary: #eff6ff;
-            --bg-alert-success: #f0fdf4;
-            --bg-alert-dark: #f1f5f9;
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
+            --bg: #f0f4ff;
+            --bg-card: rgba(255, 255, 255, 0.9);
+            --bg-card-solid: #ffffff;
+            --bg-hover: rgba(241, 245, 249, 0.9);
+            --bg-input: rgba(255, 255, 255, 0.95);
+            --bg-table-stripe: rgba(248, 250, 252, 0.8);
+            --bg-table-hover: rgba(37, 99, 235, 0.08);
+            --text: #0f172a;
+            --text-secondary: #475569;
             --text-muted: #94a3b8;
-            --text-link: #2563eb;
-            --text-link-hover: #1d4ed8;
-            --border-color: #e2e8f0;
-            --border-light: #f1f5f9;
-            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
-            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --accent: #2563eb;
+            --accent-glow: rgba(37, 99, 235, 0.25);
+            --danger: #dc2626;
+            --danger-bg: rgba(220, 38, 38, 0.1);
+            --success: #16a34a;
+            --success-bg: rgba(22, 163, 74, 0.1);
+            --info-bg: rgba(37, 99, 235, 0.1);
+            --border: rgba(15, 23, 42, 0.1);
+            --border-strong: rgba(15, 23, 42, 0.2);
+            --shadow: 0 8px 32px rgba(0,0,0,0.08);
+            --shadow-lg: 0 16px 64px rgba(0,0,0,0.12);
+            --loader-dot: #2563eb;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* ===== RESET ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Vazir', sans-serif;
             text-align: right;
-            background: var(--bg-body);
+            background: var(--bg);
+            color: var(--text);
             min-height: 100vh;
-            color: var(--text-primary);
-            line-height: 1.7;
-            transition: background 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+            line-height: 1.8;
+            transition: background 0.5s ease, color 0.3s ease;
         }
 
-        .container {
-            max-width: 1200px;
+        a { color: var(--accent); text-decoration: none; transition: all 0.2s ease; }
+        a:hover { opacity: 0.8; }
+
+        /* ===== LOADER ===== */
+        .loader-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: #050510;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
         }
 
-        /* Theme Toggle */
+        .loader-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-dots {
+            display: flex;
+            gap: 10px;
+        }
+
+        .loader-dots span {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--loader-dot);
+            animation: dotBounce 1.4s ease-in-out infinite;
+        }
+
+        .loader-dots span:nth-child(2) { animation-delay: 0.16s; }
+        .loader-dots span:nth-child(3) { animation-delay: 0.32s; }
+        .loader-dots span:nth-child(4) { animation-delay: 0.48s; }
+        .loader-dots span:nth-child(5) { animation-delay: 0.64s; }
+
+        @keyframes dotBounce {
+            0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+            40% { transform: scale(1.2); opacity: 1; }
+        }
+
+        .loader-text {
+            color: #64748b;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+
+        /* ===== SHADER BACKGROUND ===== */
+        #shader-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ===== THEME TOGGLE ===== */
         .theme-toggle {
             position: fixed;
-            top: 20px;
-            left: 20px;
+            top: 24px;
+            left: 24px;
             z-index: 999;
-            width: 48px;
-            height: 48px;
+            width: 52px;
+            height: 52px;
             border-radius: 50%;
-            border: 2px solid var(--border-color);
+            border: 1px solid var(--border-strong);
             background: var(--bg-card);
-            color: var(--text-primary);
-            font-size: 1.3rem;
+            backdrop-filter: blur(20px);
+            color: var(--text);
+            font-size: 1.4rem;
             cursor: pointer;
             box-shadow: var(--shadow);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
         .theme-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: var(--shadow-xl);
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 0 24px var(--accent-glow);
         }
 
         .theme-toggle .icon-sun,
         .theme-toggle .icon-moon {
             position: absolute;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
 
-        [data-theme="dark"] .theme-toggle .icon-sun { opacity: 1; }
-        [data-theme="dark"] .theme-toggle .icon-moon { opacity: 0; }
-        [data-theme="light"] .theme-toggle .icon-sun { opacity: 0; }
-        [data-theme="light"] .theme-toggle .icon-moon { opacity: 1; }
+        [data-theme="dark"] .icon-sun { opacity: 1; transform: rotate(0deg); }
+        [data-theme="dark"] .icon-moon { opacity: 0; transform: rotate(-90deg); }
+        [data-theme="light"] .icon-sun { opacity: 0; transform: rotate(90deg); }
+        [data-theme="light"] .icon-moon { opacity: 1; transform: rotate(0deg); }
 
-        /* Card Styles */
-        .card {
-            border: none;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden;
-            background: var(--bg-card);
+        /* ===== MAIN CONTAINER ===== */
+        .main-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
         }
 
-        .card:hover {
-            box-shadow: var(--shadow-xl);
-            transform: translateY(-4px);
+        /* ===== HEADER ===== */
+        .hero {
+            text-align: center;
+            padding: 60px 0 40px;
         }
 
-        .card-header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: #fff;
-            border: none;
-            padding: 1.25rem 1.5rem;
-        }
-
-        .card-header h4 {
-            margin: 0;
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        .card-header p {
-            margin: 0.5rem 0 0 0;
-            opacity: 0.9;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        .card-body {
-            padding: 1.5rem;
-        }
-
-        .card-img-top {
+        .hero-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--border-strong);
+            box-shadow: 0 0 40px var(--accent-glow);
+            margin-bottom: 20px;
             transition: transform 0.3s ease;
         }
 
-        .card:hover .card-img-top {
-            transform: scale(1.05);
+        .hero-logo:hover { transform: scale(1.08); }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
         }
 
-        /* Table Styles */
-        .table {
-            display: block !important;
-            overflow-x: auto !important;
-            width: 100% !important;
-            border-collapse: separate;
-            border-spacing: 0;
-            background: var(--bg-table);
+        .hero h1 a { color: var(--accent); }
+        .hero h1 a:hover { text-decoration: underline; }
+
+        .hero .subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* ===== GRID ===== */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        @media (max-width: 900px) {
+            .grid-3, .grid-2 { grid-template-columns: 1fr; }
+        }
+
+        /* ===== CARDS ===== */
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
             border-radius: var(--radius);
+            padding: 24px;
             box-shadow: var(--shadow);
-            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(30px);
         }
 
-        .table thead {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .table thead th {
-            background: transparent;
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-glow);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--accent), #1d4ed8);
             color: #fff;
-            font-weight: 600;
-            padding: 1rem 0.75rem;
-            border: none;
-            white-space: nowrap;
+            border-radius: var(--radius-sm);
+            padding: 16px 20px;
+            margin: -24px -24px 20px;
+            border-radius: var(--radius) var(--radius) 0 0;
+        }
+
+        .card-header h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .card-header p {
             font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            opacity: 0.9;
+            margin: 6px 0 0;
+            line-height: 1.6;
         }
 
-        .table tbody tr {
-            transition: all 0.2s ease;
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .table tbody tr:hover {
-            background: var(--bg-table-hover);
-            transform: scale(1.01);
-        }
-
-        .table tbody tr:last-child {
-            border-bottom: none;
-        }
-
-        .table td {
-            padding: 0.875rem 0.75rem;
-            vertical-align: middle;
-            border: none;
-            font-size: 0.9rem;
-            color: var(--text-primary);
-        }
-
-        .table-striped tbody tr:nth-child(odd) {
-            background-color: var(--bg-table-stripe);
-        }
-
-        .table a {
-            color: var(--text-link);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-
-        .table a:hover {
-            color: var(--text-link-hover);
-            text-decoration: underline;
-        }
-
-        /* Alert Styles */
+        /* ===== ALERTS ===== */
         .alert {
             border: none;
-            border-radius: var(--radius);
-            padding: 1rem 1.25rem;
-            margin-bottom: 1rem;
+            border-radius: var(--radius-sm);
+            padding: 14px 20px;
+            margin-bottom: 12px;
             font-size: 0.9rem;
             line-height: 1.7;
-            box-shadow: var(--shadow-sm);
+            border-right: 4px solid;
+            backdrop-filter: blur(10px);
             transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateX(20px);
         }
 
-        .alert:hover {
-            transform: translateX(-4px);
-            box-shadow: var(--shadow);
+        .alert.visible {
+            opacity: 1;
+            transform: translateX(0);
         }
 
-        .alert-danger {
-            background: var(--bg-alert-danger);
-            color: #fca5a5;
-            border-right: 4px solid var(--danger);
-        }
+        .alert:hover { transform: translateX(-4px); }
 
-        .alert-primary {
-            background: var(--bg-alert-primary);
-            color: #93c5fd;
-            border-right: 4px solid var(--primary);
-        }
-
-        .alert-success {
-            background: var(--bg-alert-success);
-            color: #86efac;
-            border-right: 4px solid var(--success);
-        }
-
-        .alert-dark {
-            background: var(--bg-alert-dark);
-            color: var(--text-secondary);
-            border-right: 4px solid var(--text-muted);
-        }
+        .alert-danger { background: var(--danger-bg); color: #fca5a5; border-color: var(--danger); }
+        .alert-info { background: var(--info-bg); color: #93c5fd; border-color: var(--accent); }
+        .alert-success { background: var(--success-bg); color: #86efac; border-color: var(--success); }
 
         [data-theme="light"] .alert-danger { color: #991b1b; }
-        [data-theme="light"] .alert-primary { color: #1e40af; }
+        [data-theme="light"] .alert-info { color: #1e40af; }
         [data-theme="light"] .alert-success { color: #166534; }
 
-        .alert a {
-            color: inherit;
-            font-weight: 600;
-            text-decoration: underline;
-            text-underline-offset: 2px;
+        .alert a { color: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+
+        /* ===== LIST ===== */
+        .styled-list {
+            list-style: none;
+            padding: 0;
         }
 
-        .alert a:hover {
-            opacity: 0.8;
-        }
-
-        /* List Group */
-        .list-group-item {
-            border: none;
-            border-bottom: 1px solid var(--border-light);
-            padding: 0.875rem 1.25rem;
+        .styled-list li {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
             font-size: 0.9rem;
-            color: var(--text-primary);
-            background: var(--bg-card);
+            color: var(--text);
             transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .list-group-item:last-child {
-            border-bottom: none;
+        .styled-list li:last-child { border-bottom: none; }
+
+        .styled-list li:hover {
+            background: var(--bg-hover);
+            padding-right: 20px;
         }
 
-        .list-group-item:hover {
-            background: var(--bg-card-hover);
-            padding-right: 1.75rem;
+        .styled-list li::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0;
         }
 
-        .list-group-item::before {
-            content: "\2022";
-            color: var(--primary);
-            font-weight: bold;
-            margin-left: 0.5rem;
-            font-size: 1.2rem;
+        /* ===== SEARCH ===== */
+        .search-wrapper {
+            position: relative;
+            margin: 30px 0;
         }
 
-        /* Search Input */
+        .search-wrapper svg {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            width: 20px;
+            height: 20px;
+        }
+
         #search {
-            border: 2px solid var(--border-color);
+            width: 100%;
+            border: 1px solid var(--border-strong);
             border-radius: 50px;
-            padding: 0.875rem 1.5rem;
+            padding: 16px 50px 16px 20px;
             font-size: 1rem;
             font-family: 'Vazir', sans-serif;
-            transition: all 0.3s ease;
             background: var(--bg-input);
-            color: var(--text-primary);
-            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(16px);
+            color: var(--text);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
         }
 
         #search:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
             outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px var(--accent-glow), var(--shadow);
         }
 
-        #search::placeholder {
-            color: var(--text-muted);
+        #search::placeholder { color: var(--text-muted); }
+
+        /* ===== TABLE ===== */
+        .table-wrapper {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
         }
 
-        /* Button Styles */
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            border: none;
-            border-radius: 8px;
-            padding: 0.625rem 1.5rem;
+        .table-wrapper.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .table-scroll {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: linear-gradient(135deg, var(--accent), #1d4ed8);
+        }
+
+        thead th {
+            color: #fff;
             font-weight: 600;
-            font-family: 'Vazir', sans-serif;
-            color: #fff;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+            padding: 14px 16px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            white-space: nowrap;
+            border: none;
+            text-align: center;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.4);
-            color: #fff;
+        tbody tr {
+            border-bottom: 1px solid var(--border);
+            transition: all 0.2s ease;
         }
 
-        /* Heading Styles */
-        h3 {
-            font-weight: 800;
-            color: var(--text-primary);
-            font-size: 1.5rem;
+        tbody tr:hover {
+            background: var(--bg-table-hover);
         }
 
-        h3 a {
-            color: var(--text-link);
-            text-decoration: none;
+        tbody tr:nth-child(odd) {
+            background: var(--bg-table-stripe);
         }
 
-        h3 a:hover {
-            text-decoration: underline;
+        td {
+            padding: 12px 16px;
+            font-size: 0.88rem;
+            color: var(--text);
+            border: none;
+            vertical-align: middle;
+            text-align: center;
         }
 
-        h6 {
-            color: var(--text-muted);
+        td a {
+            color: var(--accent);
             font-weight: 500;
         }
 
-        /* HR */
-        hr {
-            border: none;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--border-color), transparent);
-            margin: 1.5rem 0;
-        }
+        td a:hover { text-decoration: underline; }
 
-        /* Footer */
-        .text-secondary {
-            color: var(--text-muted) !important;
-        }
-
-        .text-secondary a {
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            padding: 40px 0 20px;
             color: var(--text-muted);
-            text-decoration: none;
-            transition: color 0.2s ease;
+            font-size: 0.85rem;
         }
 
-        .text-secondary a:hover {
-            color: var(--text-link);
+        .footer a { color: var(--text-muted); }
+        .footer a:hover { color: var(--accent); }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        ::-webkit-scrollbar-track {
-            background: var(--border-light);
-            border-radius: 4px;
+        .scroll-reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: var(--text-muted);
-            border-radius: 4px;
+        .scroll-reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--text-secondary);
+        .scroll-reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Responsive */
+        .scroll-reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .card:hover {
-                transform: none;
-            }
-
-            .alert:hover {
-                transform: none;
-            }
-
-            .table td, .table th {
-                font-size: 0.8rem;
-                padding: 0.625rem 0.5rem;
-            }
-
-            .theme-toggle {
-                top: 12px;
-                left: 12px;
-                width: 42px;
-                height: 42px;
-                font-size: 1.1rem;
-            }
+            .hero h1 { font-size: 1.6rem; }
+            .theme-toggle { top: 16px; left: 16px; width: 44px; height: 44px; }
+            .main-wrapper { padding: 20px 12px 40px; }
+            td, th { padding: 10px 10px; font-size: 0.8rem; }
         }
     </style>
 </head>
 
-<body dir="rtl" data-theme="dark">
+<body>
+    <!-- Loader -->
+    <div class="loader-screen" id="loader">
+        <div class="loader-dots">
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="loader-text">LOADING</div>
+    </div>
+
+    <!-- Shader Background -->
+    <canvas id="shader-canvas"></canvas>
+
+    <!-- Theme Toggle -->
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
         <span class="icon-sun">&#9728;</span>
         <span class="icon-moon">&#9790;</span>
     </button>
-    <div class="container">
-        <div class="row mt-5">
-            <div class="col-md-3 col-sm-12">
-                <div class="card" style="display: flex;align-items: center;">
-                    <img class="card-img-top" src="webamooz.jpg" alt="webamooz" style="width: 50%;">
-                    <div class="card-body">
-                      <a href="https://news.webamooz.com/" target="_blank" class="btn btn-primary">سایت خبری وب آموز</a>
-                    </div>
-                  </div>
-            </div>
-            <div class="col-md-6 col-sm-12">
-                <div>
-                    <div style="text-align: center;">
-                        <h3>لیست هشدار
-                            <a href="https://webamooz.com/" target="_blank">وب آموز:</a>
-                        </h3>
-                        <h6>ویرایش ۱ شهریور ۱۴۰۱</h6>
-                    </div>
-                    <hr>
-                    <b>
+
+    <div class="main-wrapper">
+        <!-- Hero -->
+        <div class="hero scroll-reveal">
+            <img class="hero-logo" src="webamooz.jpg" alt="webamooz">
+            <h1>لیست هشدار <a href="https://webamooz.com/" target="_blank">وب آموز</a></h1>
+            <p class="subtitle">ویرایش ۱ شهریور ۱۴۰۱</p>
+        </div>
+
+        <!-- Info Grid -->
+        <div class="grid-3">
+            <div class="card scroll-reveal">
+                <div class="card-body">
+                    <b style="color: var(--text-secondary); line-height: 2; display: block;">
                         حوزه رمزارزها و فناوری بلاکچین با نوآوری های خیره کننده و فرصت سازی های بی بدیلش همه را مجذوب خود
-                        ساخته، این جذب روی دیگری نیز دارد و مانند سیاه چاله سرمایه های مردم را در خود می بلعد. افراد سودجو
-                        همیشه در کمین اند و از کمبود آگاهی مردم سوء استفاده می کنند.
-                        فعالین حوزه رمزارز و بلاکچین با کمک وب آموز تلاش دارند تا با روشن کردن چراغ قرمز، حساسیت مردم را
-                        نسبت به پروژه های لیست شده در این صفحه افزایش دهند.
+                        ساخته، این جذب روی دیگری نیز دارد و مانند سیاه چاله سرمایه های مردم را در خود می بلعد.
                     </b>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-12">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>شِیدکوین</h4>
-                            </div>
-                            <div class="card-body">
-                              <p class="card-text">
-                                    به توکنی اطلاق می شود که احتمال شیادی در آن رویت شده یا فعالیتش با اقدامات فریبکارانه
-                                    همراه بوده یا فاقد ارزش اقتصادی یا با ریسک بالا ارزیابی شده است. تداعی کلمه Sh*coin
-                              </p>
-                            </div>
-                          </div>
-                    </div>
+            <div class="card scroll-reveal">
+                <div class="card-header">
+                    <h3>شِیدکوین</h3>
+                </div>
+                <div class="card-body">
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                        به توکنی اطلاق می شود که احتمال شیادی در آن رویت شده یا فعالیتش با اقدامات فریبکارانه
+                        همراه بوده یا فاقد ارزش اقتصادی یا با ریسک بالا ارزیابی شده است.
+                    </p>
+                </div>
+            </div>
+            <div class="card scroll-reveal">
+                <div class="card-header">
+                    <h3>پروژه ها بر چه اساسی؟</h3>
+                </div>
+                <ul class="styled-list">
+                    <li>با توجه به استقبال و درخواست مردمی</li>
+                    <li>کلاهبرداری محرز شده باشد</li>
+                    <li>فاقد مجوزهای لازم</li>
+                    <li>رفتارهای فریب کاری</li>
+                    <li>دروغ و خلاف از طرف پروژه</li>
+                    <li>نظر کارشناسان خبره</li>
+                    <li>پشتوانه مبهم و عدم شفافیت</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Alerts -->
+        <div class="grid-2">
+            <div>
+                <div class="alert alert-danger scroll-reveal-left">
+                    این صفحه با همت کامیونیتی بلاکچین و رمزارز و با مدیریت وب آموز با هدف معرفی پروژه های مشکوک، پرریسک یا اسکم ایجاد شده است
+                </div>
+                <div class="alert alert-info scroll-reveal-left">
+                    هر شخصی می تواند در تکمیل این صفحه مشارکت کند، برای اینکار <a href="https://github.com/Webamoozcom/warning-list/blob/master/README.md">مطابق دستورالعمل</a> اقدام کنید.
+                </div>
+                <div class="alert alert-success scroll-reveal-left">
+                    برای کمک به تکمیل لیست هشدار می توانید از github استفاده کنید و یک pull request ارسال کنید یا در <a href="https://t.me/warning_list">گروه تلگرام</a> پیام دهید.
+                </div>
+            </div>
+            <div>
+                <div class="alert alert-info scroll-reveal-right">
+                    برای مشارکت در بحث ها بر روی لینک بحث در انتهای هر سطر کلیک کنید.
+                </div>
+                <div class="alert alert-success scroll-reveal-right">
+                    برای همکاری با لیست هشدار وب آموز <a href="https://t.me/warning_list">به این گروه تلگرام</a> بپیوندید.
+                </div>
+                <div class="alert alert-danger scroll-reveal-right">
+                    <a href="https://news.webamooz.com/" target="_blank" style="display: inline-block; margin-top: 4px;">سایت خبری وب آموز</a>
                 </div>
             </div>
         </div>
-        <div class="row mt-3">
-            <div class="col-md-6 col-sm-12">
-                <div class="alert alert-danger" role="alert">
-                    این صفحه با همت کامیونیتی بلاکچین و رمزارز و با مدیریت وب آموز با هدف معرفی پروژه های مشکوک، پرریسک یا  اسکم(کلاه برداری) ایجاد شده است
-                </div>
-                <div class="alert alert-primary" role="alert">
-                    هر شخصی می تواند در تکمیل این صفحه مشارکت کند، برای اینکار <a href="https://github.com/Webamoozcom/warning-list/blob/master/README.md">مطابق دستورالعمل</a> اقدام کنید و درخواست اصلاح بدهید. وب آموز پس از بررسی درخواست مربوطه نسبت به تایید و انتشار آن اقدام خواهد کرد.
-                </div>
-                <div class="alert alert-success" role="alert">
-                    برای کمک به تکمیل لیست هشدار می توانید از github استفاده کنید و یک pull request ارسال کنید و یا بصورت پیام مستقیم در <a href="https://twitter.com/search?q=%23%D9%84%DB%8C%D8%B3%D8%AA_%D9%87%D8%B4%D8%AF%D8%A7%D8%B1&src=typed_query&f=live">توییتر با هشتگ #لیست_هشدار</a> منتشر کنید یا در  <a href="https://t.me/warning_list">گروه تلگرام لیست هشدار وب آموز</a> پیام دهید.
-                </div>
-                <div class="alert alert-primary" role="alert">
-                  برای مشارکت در بحث ها بر روی لینک بحث در انتهای هر سطر کلیک کنید.
-              </div>
-              <div class="alert alert-success" role="alert">
-               برای همکاری با لیست هشدار وب آموز <a href="https://t.me/warning_list">به این گروه تلگرام</a> بپیوندید.
-           </div>
-         <div class="alert alert-dark" role="alert">
-                    محتوای اولیه از لیست هشدار انجمن بلاکچین اقتباس شده است
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>پروژه ها بر چه اساسی معرفی می شوند؟</h4>
-                        <p>
-                            کسب و کار ها و پروژه ها براساس موارد زیر در این “لیست هشدار” قرار می گیرند و به صورت
-                            مستمر بروزرسانی می شوند:
-                        </p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item">با توجه به استقبال و درخواست مردمی</li>
-                      <li class="list-group-item">کلاهبرداری پروژه یا کسب و کار محرز شده باشد</li>
-                      <li class="list-group-item">پروژه هایی که فاقد مجوزهای لازم جهت فعالیت اند</li>
-                      <li class="list-group-item">رفتارهای فریب کاری و عوام فریبی در عملکرد مشاهده شود</li>
-                      <li class="list-group-item">اگر دروغ و خلافی از طرف پروژه اظهار شده باشد</li>
-                      <li class="list-group-item">نظر کارشناسان خبره</li>
-                      <li class="list-group-item">پشتوانه مبهم، عدم شفافیت، مدل و فناوری ضعیف</li>
-                    </ul>
-                </div>
-            </div>
+
+        <!-- Search -->
+        <div class="search-wrapper scroll-reveal">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+            <input type="text" id="search" onkeyup="search()" placeholder="جستجوی پروژه...">
         </div>
-        <div class="row mt-4">
 
-            <!-- Search -->
-            <div class="col-12">
-               <input type="text" class="form-control" id="search" onkeyup="search()" placeholder="جستجو">
-            </div>
-
-            <div class="col-12 mt-4">
-                <table class="table table-striped table-responsive">
+        <!-- Table -->
+        <div class="table-wrapper scroll-reveal">
+            <div class="table-scroll">
+                <table>
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">نام پروژه یا کسب و کار</th>
-                            <th scope="col">حوزه فعالیت</th>
-                            <th scope="col">وبسایت</th>
-                            <th scope="col">نماد/توکن</th>
-                            <th scope="col">تاریخ درج</th>
-                            <th scope="col">مستند</th>
-                            <th scope="col">بحث</th>
+                            <th>نام پروژه</th>
+                            <th>حوزه فعالیت</th>
+                            <th>وبسایت</th>
+                            <th>نماد</th>
+                            <th>تاریخ</th>
+                            <th>بحث</th>
+                            <th>#</th>
                         </tr>
                     </thead>
-                    <tbody>
-                    </tbody>
+                    <tbody></tbody>
                 </table>
             </div>
         </div>
-        <div class="text-secondary">
-            <div style="text-align: center;">
-                <a href="https://github.com/Webamoozcom/warning-list.git" target="_blank">سورس کد صفحه</a>
-            </div>
 
+        <!-- Footer -->
+        <div class="footer scroll-reveal">
+            <a href="https://github.com/Webamoozcom/warning-list.git" target="_blank">سورس کد صفحه</a>
         </div>
-
     </div>
 
-   <script>
-      const sites = [
-         {
-            "name": "یونیفاندز unifunds",
-            "type": "پانزی",
-            "url": "http://www.unifunds.com",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/8\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "وایزلینگ Wiseling",
-            "type": "پانزی",
-            "url": "http://wiseling.com",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/18\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "مستر دیجی کوین Mr Digi Coin",
-            "type": "استیک ، کلود ماین",
-            "url": "http://mrdigicoin.io",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "AYA,RAHA",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/19\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "لیام توکن Lyam Token",
-            "type": "شید کوین",
-            "url": "http://liyamtoken.com",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/15\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "کوین هش Coin Hash",
-            "type": "پانزی",
-            "url": "http://www.coin-hash.com",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/22\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "کریپتولند Cryptoland",
-            "type": "پلتفرم تبادل",
-            "url": "https://cryptoland.com",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/23\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "صرافی تبدیل مارکت",
-            "type": "پلتفرم تبادل",
-            "url": "https://mtabdil.com",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/26\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "صرافی اِی آی تریدز AiTrades",
-            "type": "پلتفرم تبادل",
-            "url": "https://aitrades.com",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/45\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "صرافی آریانا",
-            "type": "پلتفرم تبادل",
-            "url": "https://aryana.io",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/19\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "صرافی سینکروبیت SynchroBit",
-            "type": "پلتفرم تبادل",
-            "url": "https://synchrobit.io",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/52\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "راتین بانک ratin bank",
-            "type": "پانزی",
-            "url": "https://www.ratinbank.com",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/46\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "جنرال تریدینگ General Trading",
-            "type": "طرح پانزی",
-            "url": "http://general.tradings.ir/",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/44\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "توکن TWF",
-            "type": "شید کوین",
-            "url": "https://coinstwf.com",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "TWF",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/47\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "پروژه آریا کوین Arya Coin",
-            "type": "ICO",
-            "url": "https://aryacoin.io",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "AYA",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/19\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "پروپرتیک propertiq",
-            "type": "پانزی",
-            "url": "https://propertiq.io",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/49\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "بیکس بی کوین bixbcoin",
-            "type": "شید کوین",
-            "url": "https://bixbcoin.com",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "BXB, BXC, BXM",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/50\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "بریج اوراکل Bridge Oracle",
-            "type": "IEO -Oracle",
-            "url": "https://bridge.link",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "BRG",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/23\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "ایمپرو سلوشنز impero solutions",
-            "type": "پانزی",
-            "url": "https://impero.solutions",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/25\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "اکسکوینو",
-            "type": "پلتفرم تبادل - تولید شیدکوین",
-            "url": "https://www.excoino.com",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "EXC, excoin",
-            "doc": "",
-            "group": ""
-         },
-         {
-            "name": "آی ماینر",
-            "type": "کلود ماینینگ",
-            "url": "http://dedino.ir",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/54\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "آی ام اس ماینینگ IMS Mining",
-            "type": "کلود ماینینگ",
-            "url": "https://www.imsmining.com",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/55\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "آمیتیس",
-            "type": "پانزی",
-            "url": "",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/15\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "آریا نت Aryanet",
-            "type": "شبکه بلاکچینی",
-            "url": "https://aryacoin.io",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/19\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "آرون گروپس",
-            "type": "تبادل و سرمایه گذاری",
-            "url": "http://arongroups.co",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/56\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "Unique Finance",
-            "type": "جذب سرمایه/پانزی",
-            "url": "https://portal.gpm.ltd",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "UNQT",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/27\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "REEC (renewable Electronic Energy Coin)",
-            "type": "کلود ماینینگ",
-            "url": "http://coinsmining.energy",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/57\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "Persia Exchange",
-            "type": "پلتفرم تبادل",
-            "url": "http://www.persia.exchange",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/58\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "MTT Coin",
-            "type": "شید کوین",
-            "url": "https://mttcoin.com",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "MTT",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/26\" target=\"_blank\">🔗</a>"
+    <script>
+        // ===== DATA =====
+        const sites = [
+            {"name":"یونیفاندز unifunds","type":"پانزی","url":"http://www.unifunds.com","date":"۱۴۰۰/۳/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/8\" target=\"_blank\">💬</a>"},
+            {"name":"وایزلینگ Wiseling","type":"پانزی","url":"http://wiseling.com","date":"۱۴۰۰/۳/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/18\" target=\"_blank\">💬</a>"},
+            {"name":"مستر دیجی کوین Mr Digi Coin","type":"استیک ، کلود ماین","url":"http://mrdigicoin.io","date":"۱۴۰۰/۳/۱۲","symbol":"AYA,RAHA","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/19\" target=\"_blank\">💬</a>"},
+            {"name":"لیام توکن Lyam Token","type":"شید کوین","url":"http://liyamtoken.com","date":"۱۴۰۰/۳/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/15\" target=\"_blank\">💬</a>"},
+            {"name":"کوین هش Coin Hash","type":"پانزی","url":"http://www.coin-hash.com","date":"۱۴۰۰/۳/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/22\" target=\"_blank\">💬</a>"},
+            {"name":"کریپتولند Cryptoland","type":"پلتفرم تبادل","url":"https://cryptoland.com","date":"۱۴۰۰/۳/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/23\" target=\"_blank\">💬</a>"},
+            {"name":"صرافی تبدیل مارکت","type":"پلتفرم تبادل","url":"https://mtabdil.com","date":"۱۴۰۰/۳/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/26\" target=\"_blank\">💬</a>"},
+            {"name":"صرافی اِی آی تریدز AiTrades","type":"پلتفرم تبادل","url":"https://aitrades.com","date":"۱۴۰۰/۳/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/45\" target=\"_blank\">💬</a>"},
+            {"name":"صرافی آریانا","type":"پلتفرم تبادل","url":"https://aryana.io","date":"۱۴۰۰/۳/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/19\" target=\"_blank\">💬</a>"},
+            {"name":"صرافی سینکروبیت SynchroBit","type":"پلتفرم تبادل","url":"https://synchrobit.io","date":"۱۴۰۰/۳/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/52\" target=\"_blank\">💬</a>"},
+            {"name":"راتین بانک ratin bank","type":"پانزی","url":"https://www.ratinbank.com","date":"۱۴۰۰/۳/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/46\" target=\"_blank\">💬</a>"},
+            {"name":"جنرال تریدینگ General Trading","type":"طرح پانزی","url":"http://general.tradings.ir/","date":"۱۴۰۰/۳/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/44\" target=\"_blank\">💬</a>"},
+            {"name":"توکن TWF","type":"شید کوین","url":"https://coinstwf.com","date":"۱۴۰۰/۳/۱۲","symbol":"TWF","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/47\" target=\"_blank\">💬</a>"},
+            {"name":"پروژه آریا کوین Arya Coin","type":"ICO","url":"https://aryacoin.io","date":"۱۴۰۰/۳/۱۲","symbol":"AYA","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/19\" target=\"_blank\">💬</a>"},
+            {"name":"پروپرتیک propertiq","type":"پانزی","url":"https://propertiq.io","date":"۱۴۰۰/۳/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/49\" target=\"_blank\">💬</a>"},
+            {"name":"بیکس بی کوین bixbcoin","type":"شید کوین","url":"https://bixbcoin.com","date":"۱۴۰۰/۳/۱۲","symbol":"BXB, BXC, BXM","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/50\" target=\"_blank\">💬</a>"},
+            {"name":"بریج اوراکل Bridge Oracle","type":"IEO -Oracle","url":"https://bridge.link","date":"۱۴۰۰/۳/۱۲","symbol":"BRG","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/23\" target=\"_blank\">💬</a>"},
+            {"name":"ایمپرو سلوشنز impero solutions","type":"پانزی","url":"https://impero.solutions","date":"۱۴۰۰/۳/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/25\" target=\"_blank\">💬</a>"},
+            {"name":"اکسکوینو","type":"پلتفرم تبادل","url":"https://www.excoino.com","date":"۱۴۰۰/۳/۱۲","symbol":"EXC","group":""},
+            {"name":"آی ماینر","type":"کلود ماینینگ","url":"http://dedino.ir","date":"۱۴۰۰/۳/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/54\" target=\"_blank\">💬</a>"},
+            {"name":"آی ام اس ماینینگ IMS Mining","type":"کلود ماینینگ","url":"https://www.imsmining.com","date":"۱۴۰۰/۳/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/55\" target=\"_blank\">💬</a>"},
+            {"name":"آمیتیس","type":"پانزی","url":"","date":"۱۴۰۰/۳/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/15\" target=\"_blank\">💬</a>"},
+            {"name":"آریا نت Aryanet","type":"شبکه بلاکچینی","url":"https://aryacoin.io","date":"۱۴۰۰/۳/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/19\" target=\"_blank\">💬</a>"},
+            {"name":"آرون گروپس","type":"تبادل و سرمایه گذاری","url":"http://arongroups.co","date":"۱۴۰۰/۳/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/56\" target=\"_blank\">💬</a>"},
+            {"name":"Unique Finance","type":"جذب سرمایه/پانزی","url":"https://portal.gpm.ltd","date":"۱۴۰۰/۳/۱۲","symbol":"UNQT","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/27\" target=\"_blank\">💬</a>"},
+            {"name":"REEC","type":"کلود ماینینگ","url":"http://coinsmining.energy","date":"۱۴۰۰/۳/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/57\" target=\"_blank\">💬</a>"},
+            {"name":"Persia Exchange","type":"پلتفرم تبادل","url":"http://www.persia.exchange","date":"۱۴۰۰/۳/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/58\" target=\"_blank\">💬</a>"},
+            {"name":"MTT Coin","type":"شید کوین","url":"https://mttcoin.com","date":"۱۴۰۰/۳/۱۲","symbol":"MTT","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/26\" target=\"_blank\">💬</a>"},
+            {"name":"Iran cloud mining","type":"کلود ماینینگ","url":"https://irancloudmining.com","date":"۱۴۰۰/۳/۱۲","symbol":"","group":""},
+            {"name":"Health Care Community Token","type":"حوزه سلامت شید کوین","url":"https://healour.com","date":"۱۴۰۰/۳/۱۲","symbol":"HCC","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/62\" target=\"_blank\">💬</a>"},
+            {"name":"Farda Exchange","type":"پلتفرم تبادل","url":"https://www.farda.exchange","date":"۱۴۰۰/۳/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/58\" target=\"_blank\">💬</a>"},
+            {"name":"Coinohit Exchange","type":"پلتفرم تبادل","url":"https://coinohit.com","date":"۱۴۰۰/۳/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/58\" target=\"_blank\">💬</a>"},
+            {"name":"Bixb Exchange","type":"پلتفرم تبادل","url":"https://www.bixb.exchange","date":"۱۴۰۰/۳/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/50\" target=\"_blank\">💬</a>"},
+            {"name":"AYApay","type":"درگاه پرداخت","url":"https://ayapay.aryacoin.io","date":"۱۴۰۰/۳/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/19\" target=\"_blank\">💬</a>"},
+            {"name":"Axobank Persian","type":"سرمایه گذاری پانزی","url":"https://axotrade.com","date":"۱۴۰۰/۳/۱۲","symbol":"","group":""},
+            {"name":"AiTrades","type":"شیدکوین","url":"https://aitrades.com","date":"۱۴۰۰/۳/۱۲","symbol":"ATC Coin","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/45\" target=\"_blank\">💬</a>"},
+            {"name":"NOKON","type":"شیدکوین","url":"nokontoken.com","date":"۱۴۰۰/۶/۵","symbol":"Nko","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/17\" target=\"_blank\">💬</a>"},
+            {"name":"یوزبیت Yoozbit","type":"شیدکوین","url":"http://www.yoozbit.com/","date":"۱۴۰۰/۶/۱۳","symbol":"YZC","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/12\" target=\"_blank\">💬</a>"},
+            {"name":"آساک کوین ASAC COIN","type":"شیدکوین","url":"https://asaccoin.com/","date":"۱۴۰۰/۶/۱۳","symbol":"ASAC","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/14\" target=\"_blank\">💬</a>"},
+            {"name":"همیار ماینر Hamyar Miner","type":"کلود ماین","url":"https://hamyarminer.net/","date":"۱۴۰۰/۶/۱۴","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/20\" target=\"_blank\">💬</a>"},
+            {"name":"دیفای گروپس DeFi Groups","type":"طرح پانزی","url":"https://defigroups.com/","date":"۱۴۰۰/۶/۲۰","symbol":"JKR, DeFiX","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/39\" target=\"_blank\">💬</a>"},
+            {"name":"فوتبال football","type":"شید کوین","url":"https://t.me/sianet13/125","date":"۱۴۰۰/۶/۲۴","symbol":"football","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/41\" target=\"_blank\">💬</a>"},
+            {"name":"دریک Darik","type":"شید کوین","url":"http://www.ecompanypoll.com/","date":"۱۴۰۰/۶/۲۴","symbol":"DRC","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/42\" target=\"_blank\">💬</a>"},
+            {"name":"لئومیا Leumia","type":"شید کوین","url":"https://leumia.io/","date":"۱۴۰۰/۶/۲۴","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/43\" target=\"_blank\">💬</a>"},
+            {"name":"بِم چین BEMCHAIN","type":"شید کوین هرمی","url":"https://bemchain.io/","date":"۱۴۰۰/۶/۲۹","symbol":"BEMT,BCN","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/37\" target=\"_blank\">💬</a>"},
+            {"name":"TASTE NFT","type":"شید کوین پامپ/دامپ","url":"https://tastenfts.com/","date":"۱۴۰۰/۶/۲۹","symbol":"TASTE","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/34\" target=\"_blank\">💬</a>"},
+            {"name":"پوما کوین PCoin","type":"طرح پانزی","url":"https://www.pcoinglobal.com/","date":"۱۴۰۰/۷/۱","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/35\" target=\"_blank\">💬</a>"},
+            {"name":"تری ان وست Treenvest","type":"طرح پانزی","url":"https://www.treenvest.com/","date":"۱۴۰۰/۷/۱","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/29\" target=\"_blank\">💬</a>"},
+            {"name":"شبکه توزیع آرتان Artan Life Club","type":"طرح پانزی","url":"https://artanlife.club/","date":"۱۴۰۰/۷/۱","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/30\" target=\"_blank\">💬</a>"},
+            {"name":"ICBroker","type":"طرح پانزی","url":"https://www.icbroker.com/","date":"۱۴۰۰/۷/۱","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/33\" target=\"_blank\">💬</a>"},
+            {"name":"آی مارکتینگ AI Marketing","type":"طرح پانزی","url":"http://ai.marketing/","date":"۱۴۰۰/۷/۱","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/31\" target=\"_blank\">💬</a>"},
+            {"name":"باشگاه مشتریان ام وی Emway","type":"طرح پانزی","url":"http://emway.ir/","date":"۱۴۰۰/۷/۱","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/38\" target=\"_blank\">💬</a>"},
+            {"name":"Goes Up Higher","type":"شید کوین، پامپ و دامپ","url":"https://guhtoken.org/","date":"۱۴۰۰/۷/۵","symbol":"GUH","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/60\" target=\"_blank\">💬</a>"},
+            {"name":"Orbit Network","type":"طرح پانزی","url":"https://www.orbitnetwork.net/","date":"۱۴۰۰/۷/۷","symbol":"SLN, NYE, RKN","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/65\" target=\"_blank\">💬</a>"},
+            {"name":"اسپادان Spadan","type":"پانزی، هرمی، شیدکوین","url":"https://espadannet.ir/","date":"۱۴۰۰/۷/۷","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/67\" target=\"_blank\">💬</a>"},
+            {"name":"کینگ مانی King Money","type":"پانزی، هرمی، شیدکوین","url":"https://kingmoney.io/","date":"۱۴۰۰/۷/۷","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/66\" target=\"_blank\">💬</a>"},
+            {"name":"یوتی بایت UtByte","type":"پانزی، هرمی، شیدکوین","url":"https://utbyte.io/","date":"۱۴۰۰/۷/۷","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/66\" target=\"_blank\">💬</a>"},
+            {"name":"Initiative Q","type":"هرمی، شیدکوین","url":"https://quahl.com/","date":"۱۴۰۰/۷/۷","symbol":"Quahl","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/70\" target=\"_blank\">💬</a>"},
+            {"name":"توکن دنا DenaToken","type":"پانزی، هرمی، شیدکوین","url":"https://www.denatoken.com","date":"۱۴۰۰/۷/۱۰","symbol":"DNA","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/72\" target=\"_blank\">💬</a>"},
+            {"name":"Global Portfolio Management","type":"پانزی","url":"http://gpm.ltd/","date":"۱۴۰۰/۷/۱۲","symbol":"GMP","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/74\" target=\"_blank\">💬</a>"},
+            {"name":"استخراج رمز ارز بهکامان Behkamcoin","type":"پانزی","url":"https://www.behkamcoin.com/","date":"۱۴۰۰/۷/۱۲","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/75\" target=\"_blank\">💬</a>"},
+            {"name":"دگ کوین Dag Coin","type":"شیدکوین، هرمی","url":"https://dagcoin.org/","date":"۱۴۰۰/۷/۱۲","symbol":"DAG","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/77\" target=\"_blank\">💬</a>"},
+            {"name":"کوین ولت Coin Wallet","type":"پانزی، هرمی","url":"https://coinwallet.biz/","date":"۱۴۰۰/۷/۱۸","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/80\" target=\"_blank\">💬</a>"},
+            {"name":"تریدر بولی TraderBully","type":"پانزی، هرمی","url":"http://ww1.traderbully.com/","date":"۱۴۰۰/۷/۱۸","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/81\" target=\"_blank\">💬</a>"},
+            {"name":"سودلند Soodland","type":"پانزی، هرمی","url":"http://www.soodland.com/","date":"۱۴۰۰/۷/۲۴","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/84\" target=\"_blank\">💬</a>"},
+            {"name":"پای نتورک Pi Network","type":"بد افزار،توکن جعلی،هرمی","url":"https://minepi.com/","date":"۱۴۰۰/۸/۲۰","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/86\" target=\"_blank\">💬</a>"},
+            {"name":"ایران کوین ماین Iran Coinmine","type":"کلود ماینینگ، پانزی","url":"https://irancoinmine.com/","date":"۱۴۰۰/۸/۲۰","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/87\" target=\"_blank\">💬</a>"},
+            {"name":"لاکیرا Laqira","type":"پامپ و دامپ، شید کوین","url":"https://laqira.io/","date":"۱۴۰۰/۸/۲۱","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/88\" target=\"_blank\">💬</a>"},
+            {"name":"WaykinGroup","type":"هرمی باینری، پانزی","url":"https://waykingroup.com/","date":"۱۴۰۰/۸/۲۵","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/89\" target=\"_blank\">💬</a>"},
+            {"name":"بی ان بی ماتریکس BNBmatrix","type":"پانزی","url":"https://bnbmatrix.io/","date":"۱۴۰۰/۸/۲۵","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/90\" target=\"_blank\">💬</a>"},
+            {"name":"کریپتو گلکسی Crypto Galaxy","type":"کلاهبرداری","url":"https://smartgalaxy.finance/","date":"۱۴۰۰/۱۰/۶","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/92\" target=\"_blank\">💬</a>"},
+            {"name":"بها توکن BAHA TOKEN","type":"شید کوین","url":"https://bahatoken.site/","date":"۱۴۰۰/۱۰/۶","symbol":"BAHA","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/94\" target=\"_blank\">💬</a>"},
+            {"name":"شاماینینگ Shamining","type":"پانزی","url":"https://shamining.com/en","date":"۱۴۰۱/۶/۱","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/119\" target=\"_blank\">💬</a>"},
+            {"name":"Teeth1","type":"توکن جعلی","url":"http://www.teeth1.info/","date":"۱۴۰۱/۶/۱","symbol":"Te1","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/121\" target=\"_blank\">💬</a>"},
+            {"name":"بیت بد Bitbod","type":"پامپ و دامپ - شید کوین","url":"https://t.me/BITBOD_TRADING_CLUB","date":"۱۴۰۱/۶/۱","symbol":"","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/125\" target=\"_blank\">💬</a>"},
+            {"name":"توکن گیمنی GEMINI Token","type":"پامپ و دامپ","url":"","date":"۱۴۰۱/۶/۱","symbol":"GEM/BUSD","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/127\" target=\"_blank\">💬</a>"},
+            {"name":"توکن وین تپ WINTAP TOKEN","type":"اسکم","url":"https://wintap.io/","date":"۱۴۰۱/۶/۱","symbol":"WTT","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/130\" target=\"_blank\">💬</a>"},
+            {"name":"توکن ووجک Wojak Token","type":"پامپ و دامپ","url":"","date":"۱۴۰۱/۶/۱","symbol":"WOJ","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/131\" target=\"_blank\">💬</a>"},
+            {"name":"Frz solar system","type":"پامپ و دامپ","url":"https://frzss.com/","date":"۱۴۰۱/۶/۱","symbol":"frzss","group":"<a href=\"https://github.com/Webamoozcom/warning-list/discussions/132\" target=\"_blank\">💬</a>"}
+        ];
 
-         },
-         {
-            "name": "Iran cloud mining",
-            "type": "کلود ماینینگ",
-            "url": "https://irancloudmining.com",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": ""
-         },
-         {
-            "name": "Health Care Community Token",
-            "type": "حوزه سلامت شید کوین",
-            "url": "https://healour.com",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "HCC",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/62\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "Farda Exchange",
-            "type": "پلتفرم تبادل",
-            "url": "https://www.farda.exchange",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/58\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "Coinohit Exchange",
-            "type": "پلتفرم تبادل",
-            "url": "https://coinohit.com",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/58\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "Bixb Exchange",
-            "type": "پلتفرم تبادل",
-            "url": "https://www.bixb.exchange",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/50\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "AYApay",
-            "type": "درگاه پرداخت",
-            "url": "https://ayapay.aryacoin.io",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/19\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "Axobank Persian",
-            "type": "سرمایه گذاری پانزی",
-            "url": "https://axotrade.com",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": ""
-         },
-         {
-            "name": "AiTrades",
-            "type": "شیدکوین",
-            "url": "https://aitrades.com",
-            "date": "۱۴۰۰/۳/۱۲",
-            "symbol": "ATC Coin",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/45\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "NOKON",
-            "type": "شیدکوین",
-            "url": "nokontoken.com",
-            "date": "۱۴۰۰/۶/۵",
-            "symbol": "Nko",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/17\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "یوزبیت Yoozbit",
-            "type": "شیدکوین",
-            "url": "http://www.yoozbit.com/",
-            "date": "۱۴۰۰/۶/۱۳",
-            "symbol": "YZC",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/12\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "آساک کوین ASAC COIN",
-            "type": "شیدکوین",
-            "url": "https://asaccoin.com/",
-            "date": "۱۴۰۰/۶/۱۳",
-            "symbol": "ASAC",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/14\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "همیار ماینر Hamyar Miner",
-            "type": "کلود ماین",
-            "url": "https://hamyarminer.net/",
-            "date": "۱۴۰۰/۶/۱۴",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/20\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "دیفای گروپس DeFi Groups",
-            "type": "طرح پانزی",
-            "url": "https://defigroups.com/",
-            "date": "۱۴۰۰/۶/۲۰",
-            "symbol": "JKR, DeFiX",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/39\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "فوتبال football",
-            "type": "شید کوین",
-            "url": "https://t.me/sianet13/125",
-            "date": "۱۴۰۰/۶/۲۴",
-            "symbol": "football",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/41\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "دریک Darik",
-            "type": "شید کوین",
-            "url": "http://www.ecompanypoll.com/",
-            "date": "۱۴۰۰/۶/۲۴",
-            "symbol": "DRC",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/42\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "لئومیا Leumia",
-            "type": "شید کوین",
-            "url": "https://leumia.io/",
-            "date": "۱۴۰۰/۶/۲۴",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/43\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "بِم چین BEMCHAIN",
-            "type": "شید کوین هرمی",
-            "url": "https://bemchain.io/",
-            "date": "۱۴۰۰/۶/۲۹",
-            "symbol": "BEMT,BCN",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/37\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "TASTE NFT",
-            "type": "شید کوین پامپ/دامپ",
-            "url": "https://tastenfts.com/",
-            "date": "۱۴۰۰/۶/۲۹",
-            "symbol": "TASTE",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/34\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "پوما کوین PCoin",
-            "type": "طرح پانزی",
-            "url": "https://www.pcoinglobal.com/",
-            "date": "۱۴۰۰/۷/۱",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/35\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "تری ان وست Treenvest",
-            "type": "طرح پانزی",
-            "url": "https://www.treenvest.com/",
-            "date": "۱۴۰۰/۷/۱",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/29\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "شبکه توزیع آرتان Artan Life Club",
-            "type": "طرح پانزی",
-            "url": "https://artanlife.club/",
-            "date": "۱۴۰۰/۷/۱",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/30\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "ICBroker",
-            "type": "طرح پانزی",
-            "url": "https://www.icbroker.com/",
-            "date": "۱۴۰۰/۷/۱",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/33\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "آی مارکتینگ AI Marketing",
-            "type": "طرح پانزی",
-            "url": "http://ai.marketing/",
-            "date": "۱۴۰۰/۷/۱",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/31\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "باشگاه مشتریان ام وی Emway",
-            "type": "طرح پانزی",
-            "url": "http://emway.ir/",
-            "date": "۱۴۰۰/۷/۱",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/38\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "Goes Up Higher",
-            "type": "شید کوین، پامپ و دامپ",
-            "url": "https://guhtoken.org/",
-            "date": "۱۴۰۰/۷/۵",
-            "symbol": "GUH",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/60\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "Orbit Network",
-            "type": "طرح پانزی",
-            "url": "https://www.orbitnetwork.net/",
-            "date": "۱۴۰۰/۷/۷",
-            "symbol": "SLN, NYE, RKN",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/65\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "اسپادان Spadan",
-            "type": "پانزی، هرمی، شیدکوین",
-            "url": "https://espadannet.ir/",
-            "date": "۱۴۰۰/۷/۷",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/67\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "کینگ مانی King Money",
-            "type": "پانزی، هرمی، شیدکوین",
-            "url": "https://kingmoney.io/",
-            "date": "۱۴۰۰/۷/۷",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/66\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "یوتی بایت UtByte",
-            "type": "پانزی، هرمی، شیدکوین",
-            "url": "https://utbyte.io/",
-            "date": "۱۴۰۰/۷/۷",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/66\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "Initiative Q",
-            "type": "هرمی، شیدکوین",
-            "url": "https://quahl.com/",
-            "date": "۱۴۰۰/۷/۷",
-            "symbol": "Quahl",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/70\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "توکن دنا DenaToken",
-            "type": "پانزی، هرمی، شیدکوین",
-            "url": "https://www.denatoken.com",
-            "date": "۱۴۰۰/۷/۱۰",
-            "symbol": "DNA",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/72\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "Global Portfolio Management",
-            "type": "پانزی",
-            "url": "http://gpm.ltd/",
-            "date": "۱۴۰۰/۷/۱۲",
-            "symbol": "GMP",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/74\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "استخراج رمز ارز بهکامان Behkamcoin",
-            "type": "پانزی",
-            "url": "https://www.behkamcoin.com/",
-            "date": "۱۴۰۰/۷/۱۲",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/75\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "دگ کوین Dag Coin",
-            "type": "شیدکوین، هرمی",
-            "url": "https://dagcoin.org/",
-            "date": "۱۴۰۰/۷/۱۲",
-            "symbol": "DAG",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/77\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "کوین ولت Coin Wallet",
-            "type": "پانزی، هرمی",
-            "url": "https://coinwallet.biz/",
-            "date": "۱۴۰۰/۷/۱۸",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/80\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "تریدر بولی TraderBully",
-            "type": "پانزی، هرمی",
-            "url": "http://ww1.traderbully.com/",
-            "date": "۱۴۰۰/۷/۱۸",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/81\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "سودلند Soodland",
-            "type": "پانزی، هرمی",
-            "url": "http://www.soodland.com/",
-            "date": "۱۴۰۰/۷/۲۴",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/84\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "پای نتورک Pi Network",
-            "type": "بد افزار،توکن جعلی،هرمی",
-            "url": "https://minepi.com/",
-            "date": "۱۴۰۰/۸/۲۰",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/86\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "ایران کوین ماین Iran Coinmine",
-            "type": "کلود ماینینگ، پانزی",
-            "url": "https://irancoinmine.com/",
-            "date": "۱۴۰۰/۸/۲۰",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/87\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "لاکیرا Laqira",
-            "type": "پامپ و دامپ، شید کوین",
-            "url": "https://laqira.io/",
-            "date": "۱۴۰۰/۸/۲۱",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/88\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "WaykinGroup",
-            "type": "هرمی باینری، پانزی",
-            "url": "https://waykingroup.com/",
-            "date": "۱۴۰۰/۸/۲۵",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/89\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "بی ان بی ماتریکس BNBmatrix",
-            "type": "پانزی",
-            "url": "https://bnbmatrix.io/",
-            "date": "۱۴۰۰/۸/۲۵",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/90\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "کریپتو گلکسی Crypto Galaxy",
-            "type": "کلاهبرداری",
-            "url": "https://smartgalaxy.finance/",
-            "date": "۱۴۰۰/۱۰/۶",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/92\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "بها توکن BAHA TOKEN",
-            "type": "شید کوین",
-            "url": "https://bahatoken.site/",
-            "date": "۱۴۰۰/۱۰/۶",
-            "symbol": "BAHA",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/94\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "شاماینینگ Shamining",
-            "type": "پانزی",
-            "url": "https://shamining.com/en",
-            "date": "۱۴۰۱/۶/۱",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/119\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "Teeth1",
-            "type": "توکن جعلی",
-            "url": "http://www.teeth1.info/",
-            "date": "۱۴۰۱/۶/۱",
-            "symbol": "Te1",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/121\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "بیت بد Bitbod",
-            "type": "پامپ و دامپ - شید کوین",
-            "url": "https://t.me/BITBOD_TRADING_CLUB",
-            "date": "۱۴۰۱/۶/۱",
-            "symbol": "",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/125\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "توکن گیمنی GEMINI Token",
-            "type": "پامپ و دامپ",
-            "url": "",
-            "date": "۱۴۰۱/۶/۱",
-            "symbol": "GEM/BUSD",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/127\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "توکن وین تپ WINTAP TOKEN",
-            "type": "اسکم",
-            "url": "https://wintap.io/",
-            "date": "۱۴۰۱/۶/۱",
-            "symbol": "WTT",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/130\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "توکن ووجک Wojak Token",
-            "type": "پامپ و دامپ",
-            "url": "",
-            "date": "۱۴۰۱/۶/۱",
-            "symbol": "WOJ",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/131\" target=\"_blank\">🔗</a>"
-         },
-         {
-            "name": "Frz solar system",
-            "type": "پامپ و دامپ",
-            "url": "https://frzss.com/",
-            "date": "۱۴۰۱/۶/۱",
-            "symbol": "frzss",
-            "doc": "",
-            "group": "<a href=\"https://github.com/Webamoozcom/warning-list/discussions/132\" target=\"_blank\">🔗</a>"
-         }
-      ];
-      
+        // ===== TABLE =====
+        function create_url(site) {
+            return site.url ? `<a href="${site.url}" target="_blank" rel="nofollow">${site.url}</a>` : '-';
+        }
 
-      // helpers
-      function create_url(site) {
-         return `<a href="${site.url}" target="_blank" rel="nofollow">${site.url}</a>`
-      }
+        function add_table_rows(sites) {
+            const tbody = document.querySelector('table tbody');
+            sites.forEach((site, i) => {
+                const row = tbody.insertRow(i);
+                row.innerHTML = `
+                    <td><strong>${site.name}</strong></td>
+                    <td>${site.type}</td>
+                    <td>${create_url(site)}</td>
+                    <td>${site.symbol || '-'}</td>
+                    <td>${site.date}</td>
+                    <td>${site.group || '-'}</td>
+                    <td>${i + 1}</td>
+                `;
+            });
+        }
 
-      function add_table_rows(sites) {
-         const tbody = document.querySelector('table.table tbody')
+        // ===== SEARCH =====
+        function search() {
+            const filter = document.getElementById("search").value.toUpperCase();
+            const rows = document.querySelectorAll("table tbody tr");
+            rows.forEach(row => {
+                const text = row.textContent.toUpperCase();
+                row.style.display = text.includes(filter) ? "" : "none";
+            });
+        }
 
-         sites.forEach((site, index) => {
-            const row    = tbody.insertRow(index)
-            const id     = row.insertCell(0).innerHTML = index + 1
-            const name   = row.insertCell(1).innerHTML = site.name
-            const type   = row.insertCell(2).innerHTML = site.type
-            const url    = row.insertCell(3).innerHTML = create_url(site)
-            const symbol = row.insertCell(4).innerHTML = site.symbol
-            const date   = row.insertCell(5).innerHTML = site.date
-            const doc    = row.insertCell(6).innerHTML = site.doc
-            const group  = row.insertCell(7).innerHTML = site.group
-         })
-      }
+        // ===== THEME =====
+        function getTheme() { return localStorage.getItem('theme') || 'dark'; }
+        function setTheme(t) {
+            document.documentElement.setAttribute('data-theme', t);
+            localStorage.setItem('theme', t);
+        }
+        function toggleTheme() {
+            setTheme(getTheme() === 'dark' ? 'light' : 'dark');
+        }
 
-      function search(){
-        const input  = document.getElementById("search")
-        const table  = document.querySelector('table.table')
-        const filter = input.value.toUpperCase()
-        const tr     = table.getElementsByTagName("tr")
+        // ===== SHADER BACKGROUND =====
+        function initShader() {
+            const canvas = document.getElementById('shader-canvas');
+            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            if (!gl) return;
 
-        for(i = 0; i < tr.length; i++) {
-         td = tr[i].getElementsByTagName("td")
-         for(j=0; j<td.length; j++)
-         {
-            let tdata = td[j]
-            if(tdata) {
-               if (tdata.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                  tr[i].style.display = ""
-                  break
-               } else {
-                  tr[i].style.display = "none"
-               }
-            } 
-         }
-      }
-   }
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                gl.viewport(0, 0, canvas.width, canvas.height);
+            }
+            resize();
+            window.addEventListener('resize', resize);
 
-   add_table_rows(sites)
+            const vsSource = `attribute vec2 a_position; void main() { gl_Position = vec4(a_position, 0.0, 1.0); }`;
+            const fsSource = `
+                precision mediump float;
+                uniform float u_time;
+                uniform vec2 u_resolution;
 
-   // Theme Toggle
-   function getTheme() {
-      return localStorage.getItem('theme') || 'dark';
-   }
+                void main() {
+                    vec2 uv = gl_FragCoord.xy / u_resolution;
+                    float t = u_time * 0.15;
 
-   function setTheme(theme) {
-      document.body.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-   }
+                    vec3 col = vec3(0.02, 0.02, 0.06);
 
-   function toggleTheme() {
-      const current = document.body.getAttribute('data-theme');
-      setTheme(current === 'dark' ? 'light' : 'dark');
-   }
+                    for (float i = 0.0; i < 4.0; i++) {
+                        float angle = t + i * 1.5;
+                        vec2 center = vec2(
+                            0.5 + 0.3 * cos(angle * 0.7 + i),
+                            0.5 + 0.3 * sin(angle * 0.5 + i * 0.8)
+                        );
+                        float d = length(uv - center);
+                        float intensity = 0.02 / (d + 0.01);
 
-   // Apply saved theme on load
-   setTheme(getTheme());
-   </script>
+                        vec3 waveColor = vec3(
+                            0.15 + 0.1 * sin(t + i),
+                            0.25 + 0.15 * sin(t * 0.7 + i * 1.2),
+                            0.6 + 0.2 * sin(t * 0.5 + i * 0.5)
+                        );
+                        col += waveColor * intensity * 0.003;
+                    }
+
+                    float grid = 0.0;
+                    grid += smoothstep(0.02, 0.0, abs(fract(uv.x * 30.0) - 0.5) - 0.48) * 0.03;
+                    grid += smoothstep(0.02, 0.0, abs(fract(uv.y * 30.0) - 0.5) - 0.48) * 0.03;
+                    col += vec3(0.1, 0.2, 0.5) * grid;
+
+                    gl_FragColor = vec4(col, 1.0);
+                }
+            `;
+
+            function createShader(type, source) {
+                const s = gl.createShader(type);
+                gl.shaderSource(s, source);
+                gl.compileShader(s);
+                return s;
+            }
+
+            const program = gl.createProgram();
+            gl.attachShader(program, createShader(gl.VERTEX_SHADER, vsSource));
+            gl.attachShader(program, createShader(gl.FRAGMENT_SHADER, fsSource));
+            gl.linkProgram(program);
+            gl.useProgram(program);
+
+            const buf = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+            const pos = gl.getAttribLocation(program, 'a_position');
+            gl.enableVertexAttribArray(pos);
+            gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+
+            const uTime = gl.getUniformLocation(program, 'u_time');
+            const uRes = gl.getUniformLocation(program, 'u_resolution');
+
+            function render(t) {
+                gl.uniform1f(uTime, t * 0.001);
+                gl.uniform2f(uRes, canvas.width, canvas.height);
+                gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                requestAnimationFrame(render);
+            }
+            requestAnimationFrame(render);
+        }
+
+        // ===== SCROLL ANIMATIONS =====
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+            document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .card, .alert, .table-wrapper').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // ===== INIT =====
+        window.addEventListener('load', () => {
+            setTheme(getTheme());
+            add_table_rows(sites);
+            initShader();
+            initScrollAnimations();
+
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1200);
+        });
+    </script>
 </body>
-
 </html>
